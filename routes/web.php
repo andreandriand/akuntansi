@@ -32,7 +32,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
-Route::resource('/anggaran', AnggaranController::class)->middleware('auth');
+// Route::resource('/anggaran', AnggaranController::class)->middleware('auth');
+Route::get('/anggaran', [AnggaranController::class, 'index'])->name('anggaran.index')->middleware('auth');
+Route::get('/anggaran/create', [AnggaranController::class, 'create'])->name('anggaran.create')->middleware('admin');
+Route::post('/anggaran', [AnggaranController::class, 'store'])->name('anggaran.store')->middleware('admin');
+Route::get('/anggaran/{anggaran}/edit', [AnggaranController::class, 'edit'])->name('anggaran.edit')->middleware('admin');
+Route::put('/anggaran/{anggaran}', [AnggaranController::class, 'update'])->name('anggaran.update')->middleware('admin');
+Route::delete('/anggaran/{anggaran}', [AnggaranController::class, 'destroy'])->name('anggaran.destroy')->middleware('admin');
+
 Route::get('anggaran-export', [AnggaranController::class, 'export'])->name('anggaran.export')->middleware('auth');
 
 Route::resource('/realisasi', RealisasiController::class)->middleware('auth');

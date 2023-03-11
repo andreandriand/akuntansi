@@ -31,9 +31,11 @@
                         <i class="bi bi-pencil-fill pe-1"></i>Input Data</button>
                     <div class="collapse ps-2" id="input-data">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small mt-1">
-                            <li class="mb-1"><a href="{{ route('anggaran.create') }}"
-                                    class="link-dark d-inline-flex text-decoration-none rounded">Anggaran</a>
-                            </li>
+                            @if (Auth::user()->role == 'admin')
+                                <li class="mb-1"><a href="{{ route('anggaran.create') }}"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Anggaran</a>
+                                </li>
+                            @endif
                             <li class="mb-1"><a href="{{ route('realisasi.create') }}"
                                     class="link-dark d-inline-flex text-decoration-none rounded">Realisasi</a></li>
                         </ul>

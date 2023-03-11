@@ -62,7 +62,9 @@
                                         <th class="align-middle">Anggaran</th>
                                         <th class="align-middle">Sumber Dana</th>
                                         <th class="align-middle">Periode</th>
-                                        <th class="align-middle">Aksi</th>
+                                        @if (Auth::user()->role == 'admin')
+                                            <th class="align-middle">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,18 +80,22 @@
                                             </td>
                                             <td class="align-middle">{{ $ang->sumber_dana }}</td>
                                             <td class="align-middle">{{ $ang->tahun }}</td>
-                                            <td class="align-middle d-flex justify-content-center"
-                                                style="padding: 3.5rem 1rem;">
-                                                <a href="{{ route('anggaran.edit', $ang->id) }}"
-                                                    class="btn btn-warning rounded"><i class="ti-pencil"></i></a>
-                                                <span style="width: 0.5rem"></span>
-                                                <form action="{{ route('anggaran.destroy', $ang->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger rounded"
-                                                        onclick="return confirm('Yakin ingin menghapus data ini?')"><i
-                                                            class="fa fa-trash-o"></i></button>
-                                                </form>
+                                            @if (Auth::user()->role == 'admin')
+                                                <td class="align-middle d-flex justify-content-center"
+                                                    style="padding: 3.5rem 1rem;">
+                                                    <a href="{{ route('anggaran.edit', $ang->id) }}"
+                                                        class="btn btn-warning rounded"><i class="ti-pencil"></i></a>
+                                                    <span style="width: 0.5rem"></span>
+                                                    <form action="{{ route('anggaran.destroy', $ang->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger rounded"
+                                                            onclick="return confirm('Yakin ingin menghapus data ini?')"><i
+                                                                class="fa fa-trash-o"></i></button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                         <?php $no++; ?>
                                     @endforeach

@@ -7,6 +7,7 @@
             <th>Kode Rekening</th>
             <th>Uraian Rekening</th>
             <th>Anggaran</th>
+            <th>Sumber Dana</th>
             <th>Periode</th>
         </tr>
     </thead>
@@ -20,7 +21,8 @@
                 <td>{{ $ang->kode_rekening }}</td>
                 <td>{{ $ang->uraian_rekening }}</td>
                 <td>Rp {{ number_format($ang->anggaran, 0, '.', '.') }}</td>
-                <td>{{ $ang->bulan }} {{ $ang->tahun }}</td>
+                <td>{{ $ang->sumber_dana }}</td>
+                <td>{{ $ang->tahun }}</td>
             </tr>
             <?php $no++; ?>
         @endforeach
